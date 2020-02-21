@@ -21,9 +21,10 @@ export default function captureInput(screen: blessed.Widgets.Screen) {
         return process.exit(0);
     });
 
-    screen.key(['h', 'j', 'k', 'l'], function(ch, key) {
+    // TODO: Reduce redundant code, reference `src/types.ts` MovementCommand type
+    screen.key(['h', 'j', 'k', 'l'], function(key) {
         const inputFn = inputMap[GlobalContext.screen];
-        if (inputFn && inputFn(ch)) {
+        if (inputFn && inputFn(key)) {
             events.emit({
                 type: EventType.Run
             });

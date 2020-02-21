@@ -10,6 +10,8 @@ import createServer from './server';
 import getEvents, {BinaryData} from '../events';
 import {TrackingInfo} from '../types';
 
+const logger = require('logger').createLogger('./logs/server-index.log');
+
 const wss = new WebSocket.Server({
     // @ts-ignore
     port: +process.env.PORT
@@ -24,8 +26,8 @@ let entityId = 0;
 const map = Board.generate(500, 500);
 function pickRandoPosition() {
     return [
-        Math.floor(Math.random() * 498) + 1,
-        Math.floor(Math.random() * 498) + 1
+        Math.floor(Math.random() * 10) + 1,
+        Math.floor(Math.random() * 10) + 1
     ];
 }
 
@@ -52,6 +54,7 @@ wss.on('connection', ws => {
         entityIdRange,
         movementId: 0,
     };
+    logger.info(entityIdRange)
     currentPlayers.push(trackingInfo);
 
     console.log("LOOK AT ME, connected");

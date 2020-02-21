@@ -49,9 +49,8 @@ class ServerMovementSystem implements System {
             const movement = getMovement(update.key);
 
             // WHAT THE F
-            const position =
             // @ts-ignore
-                store.getComponent(update.entityId, PositionComponent) as PositionComponent;
+            const position = store.getComponent(update.entityId, PositionComponent) as PositionComponent;
 
             // We got a problem
             const expectedX = position.x + movement[0];
@@ -69,7 +68,7 @@ class ServerMovementSystem implements System {
                 });
 
                 tracking.ws.send(buf);
-                console.log("Movement Deninced!!!!", position.x, position.y);
+                console.log("Movement Denied!!!!", position.x, position.y);
             }
 
             else {

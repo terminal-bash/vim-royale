@@ -9,6 +9,7 @@ import GlobalContext from './context';
 import { WSMessage } from './server/commands';
 
 const events = getEvents();
+const logger = require('logger').createLogger('./logs/client-socket.log');
 
 export default class ClientSocket {
     private ws: WebSocket;
@@ -74,6 +75,7 @@ export default class ClientSocket {
     }
 
     confirmMovement(movementId: number) {
+        logger.info(GlobalContext.player);
         const player = GlobalContext.player;
         const pos = player.position;
 
